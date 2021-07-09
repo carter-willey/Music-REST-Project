@@ -48,5 +48,6 @@ class SongDetail(APIView):
 
     def delete(self, request, pk):
         song = self.get_Song(pk)
+        serializer = SongSerializer(song)
         song.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
